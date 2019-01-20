@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -10,7 +11,10 @@ class HomeController extends Controller
     public function homePage()
     {
         $title = "Larvel Shop";
-        return view('home.index')->with("title", $title);
+        $list = Product::all();
+        return view('home.index',[
+            'products' => $list
+        ])->with("title", $title);
     }
 
     public function aboutPage()
