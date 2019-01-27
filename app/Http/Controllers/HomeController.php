@@ -10,8 +10,10 @@ class HomeController extends Controller
 
     public function homePage()
     {
-        $title = "Larvel Shop";
-        $list = Product::all();
+        $title = "Laravel Shop";
+        $list = Product::all()
+            ->sortByDesc("created_at")
+            ->take(5);
         return view('home.index',[
             'products' => $list
         ])->with("title", $title);

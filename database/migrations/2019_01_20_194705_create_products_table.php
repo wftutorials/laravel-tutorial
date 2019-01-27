@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string("cost",125);
             $table->text("summary");
             $table->integer("rating");
-            $table->dateTime("createdOn");
+            $table->string("url",150);
             $table->timestamps();
         });
     }

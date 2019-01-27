@@ -3,13 +3,17 @@
 @section('content')
 
     <div class="card mt-4">
-        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+        <img class="card-img-top img-fluid" src="{{ $product->url }}" alt="">
         <div class="card-body">
-            <h3 class="card-title">Product Name {{ $id }}</h3>
-            <h4>$24.99</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            <h3 class="card-title"> {{ $product->title }}</h3>
+            <h4>${{ $product->cost }}</h4>
+            <p class="card-text">{{ $product->summary }}</p>
+            <span class="text-warning"><?php echo $product->getStars();?></span>
             4.0 stars
+        </div>
+        <div class="card-footer">
+            <a href="/shop/edit/{{ $product->id }}" class="btn btn-primary">Edit Product</a>
+            <a  data-id="{{ $product->id }}" id="delete-product" href="javascript:void(0);" class="btn btn-danger">Delete Product</a>
         </div>
     </div>
     <br>
@@ -32,5 +36,16 @@
         </div>
     </div>
     <br>
-
+<script>
+    jQuery(document).ready(function(){
+       jQuery("#delete-product").on("click",function(){
+           var ref = $(this).data("id");
+          $.post('/shop/remove',{id:ref},function(results){
+                console.log(results);
+          });
+       });
+    });
+</script>
 @endsection
+
+

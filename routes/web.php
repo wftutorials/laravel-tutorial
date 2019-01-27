@@ -20,3 +20,7 @@ Route::get('/contact','HomeController@contactPage');
 
 Route::get('/shop/create','ShopController@create')->name('create');
 Route::get('/shop/product/{id}','ShopController@product');
+Route::post('/shop/save','ShopController@save');
+Route::get('/shop/edit/{id}','ShopController@edit');
+Route::post('/shop/update/{id}','ShopController@update');
+Route::post('/shop/remove','ShopController@remove');

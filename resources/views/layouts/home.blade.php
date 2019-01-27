@@ -15,7 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/../css/shop-item.css" rel="stylesheet">
-
+    <script src="/../vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -56,11 +56,11 @@
             <div class="col-lg-3">
                 <h1 class="my-4">{{ $title }}</h1>
                 <div class="list-group">
-                    <a href="/shop/product/1" class="list-group-item active">Dell Laptop</a>
-                    <a href="/shop/product/2" class="list-group-item">Puma Shoes</a>
-                    <a href="/shop/product/3" class="list-group-item">Headphones</a>
-                    <a href="/shop/product/4" class="list-group-item">Blue Jacket</a>
-                    <a href="/shop/product/5" class="list-group-item">Plaid Tie</a>
+                    @if(!empty($products))
+                        @foreach ($products as $product)
+                         <a href="{{ $product->getViewUrl() }}" class="list-group-item">{{ $product->title }}</a>
+                     @endforeach
+                    @endif
                 </div>
                 <br>
                 <div class="list-group">
@@ -79,13 +79,12 @@
 
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; wfTutorials.com</p>
     </div>
     <!-- /.container -->
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="/../vendor/jquery/jquery.min.js"></script>
 <script src="/../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
