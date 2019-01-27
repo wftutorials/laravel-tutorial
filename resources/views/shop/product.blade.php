@@ -13,7 +13,11 @@
         </div>
         <div class="card-footer">
             <a href="/shop/edit/{{ $product->id }}" class="btn btn-primary">Edit Product</a>
-            <a  data-id="{{ $product->id }}" id="delete-product" href="javascript:void(0);" class="btn btn-danger">Delete Product</a>
+            {!! Form::open(['url' => 'shop/remove','method'=>'POST','style'=>'display:inline']) !!}
+                {{ Form::hidden("id",$product->id) }}
+            {{ Form::submit('Delete Product',['class'=>'btn btn-danger','style'=>'display:inline']) }}
+
+            {!! Form::close() !!}
         </div>
     </div>
     <br>
@@ -36,16 +40,6 @@
         </div>
     </div>
     <br>
-<script>
-    jQuery(document).ready(function(){
-       jQuery("#delete-product").on("click",function(){
-           var ref = $(this).data("id");
-          $.post('/shop/remove',{id:ref},function(results){
-                console.log(results);
-          });
-       });
-    });
-</script>
 @endsection
 
 

@@ -5,6 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
+/**
+ * Class Product
+ * @package App
+ * @property integer $user_id
+ * @property string $title
+ * @property string $cost
+ * @property string $url
+ * @property integer $rating
+ * @property string $created_at
+ * @property string $updated_at
+ */
 class Product extends Model
 {
     //

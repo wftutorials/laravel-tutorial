@@ -1,7 +1,17 @@
 @extends('layouts.home')
 
 @section('content')
-
+    <br>
+    @if(Auth::guest())
+    <div class="alert alert-primary" role="alert">
+        You should login for more features. <a href="/login">Click Here</a>
+    </div>
+    @endif
+    @if(!Auth::guest())
+        <div class="alert alert-primary" role="alert">
+            Welcome {{ Auth::user()->name }}
+        </div>
+    @endif
     @foreach ($products as $product)
         <div class="card mt-4">
             <img class="card-img-top img-fluid"

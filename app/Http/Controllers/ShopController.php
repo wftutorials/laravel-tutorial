@@ -7,7 +7,11 @@ use App\Product;
 
 class ShopController extends Controller
 {
-    //
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>[]]);
+    }
 
     public function create()
     {
@@ -34,6 +38,7 @@ class ShopController extends Controller
             "name" => 'required'
         ]);
         $product->setFormData($request);
+        $product->user_id = auth()->user()->id;
         $results = $product->save();
         return redirect('/shop/create')
             ->with('success','Post Created');
@@ -58,12 +63,10 @@ class ShopController extends Controller
     public function remove(Request $request)
     {
 
-        if ($request->isMethod('post')) {
+        if($request->isMethod("post")) {
             $product = Product::find($request->input("id"));
             $product->delete();
-            echo "Wroking";
-        }else{
-            echo "error";
+            return redirect('/');
         }
     }
 }

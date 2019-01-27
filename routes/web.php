@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@homePage')->name("home");
+Route::get('/', 'HomeController@homePage')->name("dashboard");
 
 
 Route::get('/about','HomeController@aboutPage');
@@ -24,3 +24,7 @@ Route::post('/shop/save','ShopController@save');
 Route::get('/shop/edit/{id}','ShopController@edit');
 Route::post('/shop/update/{id}','ShopController@update');
 Route::post('/shop/remove','ShopController@remove');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
