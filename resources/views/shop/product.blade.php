@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="card mt-4">
+        @if(session("success"))
+            <div class="alert alert-success" role="alert">
+                {{session('success')}}
+            </div>
+        @endif
         <img class="card-img-top img-fluid" src="{{ $product->url }}" alt="">
         <div class="card-body">
             <h3 class="card-title"> {{ $product->title }}</h3>
@@ -27,16 +32,23 @@
             Product Reviews
         </div>
         <div class="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <div>
+                {!! Form::open(['url' => '/reviews','method'=>'POST']) !!}
+                <div class="form-group">
+                    {{Form::label('review', 'Review', ['class' => 'awesome'])}}
+                    {{ Form::text('review', '',['class'=>'form-control','placeholder'=>'Enter Review']) }}
+                    {{ Form::hidden('productId', $product->id) }}
+                </div>
+                {{ Form::submit('Save a Review',['class'=>'btn btn-success']) }}
+
+                {!! Form::close() !!}
+            </div>
+            <br>
+            @foreach( $reviews as $review )
+            <p>{{ $review->content }}</p>
+            <small class="text-muted">Posted by {{ $review->author }} on {{ $review->created_at }}</small>
             <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">Leave a Review</a>
+            @endforeach
         </div>
     </div>
     <br>

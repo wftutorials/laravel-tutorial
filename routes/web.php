@@ -28,3 +28,5 @@ Route::post('/shop/remove','ShopController@remove');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('reviews', 'ReviewController');

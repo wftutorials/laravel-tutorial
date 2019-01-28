@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Reviews;
 
 class ShopController extends Controller
 {
@@ -23,11 +24,15 @@ class ShopController extends Controller
     public function product( $id="" )
     {
         $model = Product::find($id);
+        $reviews = Reviews::where("product_id", $id)
+            ->orderBy('created_at', 'desc')
+            ->get();
         $title = $model->title;
         return view('shop.product',[
             'id'=>$id,
             'title' => $title,
             'product' => $model,
+            'reviews' => $reviews
         ]);
     }
 
