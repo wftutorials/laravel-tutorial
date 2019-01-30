@@ -11,11 +11,10 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="{{ asset("/vendor/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/../css/shop-item.css" rel="stylesheet">
-    <script src="/../vendor/jquery/jquery.min.js"></script>
+    <link href="{{ asset("/css/shop-item.css") }}" rel="stylesheet">
+    <script src="{{ asset("/vendor/jquery/jquery.js") }}"></script>
 </head>
 
 <body>
